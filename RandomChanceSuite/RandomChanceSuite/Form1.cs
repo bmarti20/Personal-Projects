@@ -24,8 +24,6 @@ namespace RandomChanceSuite
         private void CoinFlipButton_Click(object sender, EventArgs e)
         {
             FlipCoin();
-            pictureBox1.Image = coin;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void FlipCoin()
@@ -44,6 +42,9 @@ namespace RandomChanceSuite
                     TailsOutcomesLabel.Text = "Tails: " + numtails;
                     break;
             }
+
+            pictureBox1.Image = coin;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void MultipleCoinFlipButton_Click(object sender, EventArgs e)
@@ -53,8 +54,6 @@ namespace RandomChanceSuite
             for (int i = 0; i < numflips; i++)
                 FlipCoin();
 
-            pictureBox1.Image = coin;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void Form1_Load(object sender, EventArgs e)
