@@ -121,6 +121,8 @@ namespace RandomChanceSuite
                 "\n6: " + dierolls[5];
         }
 
+        // Draw Card Methods
+
         private void DrawCardButton_Click(object sender, EventArgs e)
         {
             DrawCard();
@@ -134,6 +136,7 @@ namespace RandomChanceSuite
             Random rand = new Random();
             int draw = rand.Next(0, deck.Count());
             CardPictureBox.Image = deck[draw].card;
+            CardPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             DrawCardStatus.Text = deck[draw].name + "!";
             deck.RemoveAt(draw);
         }
@@ -197,9 +200,142 @@ namespace RandomChanceSuite
             deck.Add(new Card(cropImage(Image.FromFile("cards.png"), new Rectangle(877, 294, 73, 98)), "King of Diamonds"));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        // Calculator Methods
+        public double operand1 = 0;
+        public double operand2 = 0;
+        public char modifier;
+        public double result = 0;
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "1";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "2";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "3";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "4";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "5";
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "6";
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "7";
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "8";
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text += "9";
+        }
+
+        private void button0_Click(object sender, EventArgs e)
+        {
+            if (CalcTextbox.Text != null)
+                CalcTextbox.Text += "0";
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            CalcTextbox.Text = null;
+            operand1 = 0;
+            operand2 = 0;
+            result = 0;
+        }
+
+        private void DecimalButton_Click(object sender, EventArgs e)
+        {
+            if (CalcTextbox.Text == "")
+                CalcTextbox.Text = "0.";
+            else if (!CalcTextbox.Text.Contains("."))
+                CalcTextbox.Text += ".";
+        }
+
+        private void PlusButton_Click(object sender, EventArgs e)
+        {
+            if (operand2 == 0)
+            {
+                operand1 = double.Parse(CalcTextbox.Text);
+                modifier = '+';
+                CalcTextbox.Text = null;
+            }
+        }
+
+        private void MinusButton_Click(object sender, EventArgs e)
+        {
+            if (operand2 == 0)
+            {
+                operand1 = double.Parse(CalcTextbox.Text);
+                modifier = '-';
+                CalcTextbox.Text = null;
+            }
+        }
+
+        private void MultButton_Click(object sender, EventArgs e)
+        {
+            if (operand2 == 0)
+            {
+                operand1 = double.Parse(CalcTextbox.Text);
+                modifier = '*';
+                CalcTextbox.Text = null;
+            }
+        }
+
+        private void DivButton_Click(object sender, EventArgs e)
+        {
+            if (operand2 == 0)
+            {
+                operand1 = double.Parse(CalcTextbox.Text);
+                modifier = '/';
+                CalcTextbox.Text = null;
+            }
+        }
+
+        private void EqualsButton_Click(object sender, EventArgs e)
+        {
+            operand2 = double.Parse(CalcTextbox.Text);
+            switch (modifier)
+            {
+                case '+': result = operand1 + operand2;
+                    CalcTextbox.Text = result.ToString();
+                    break;
+                case '-':
+                    result = operand1 - operand2;
+                    CalcTextbox.Text = result.ToString();
+                    break;
+                case '*':
+                    result = operand1 * operand2;
+                    CalcTextbox.Text = result.ToString();
+                    break;
+                case '/':
+                    result = operand1 / operand2;
+                    CalcTextbox.Text = result.ToString();
+                    break;
+            }
+            operand1 = 0;
+            operand2 = 0;
         }
     }
 }
