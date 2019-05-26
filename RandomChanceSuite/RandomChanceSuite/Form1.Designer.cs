@@ -43,8 +43,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.MultipleDieRollButton = new System.Windows.Forms.Button();
             this.RollXTimesTextbox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CardPictureBox = new System.Windows.Forms.PictureBox();
+            this.DrawCardButton = new System.Windows.Forms.Button();
+            this.DrawCardStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CoinPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CardPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -191,11 +196,52 @@
             this.RollXTimesTextbox.Size = new System.Drawing.Size(47, 20);
             this.RollXTimesTextbox.TabIndex = 15;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(456, 8);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 29);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Draw Card";
+            // 
+            // CardPictureBox
+            // 
+            this.CardPictureBox.Location = new System.Drawing.Point(479, 40);
+            this.CardPictureBox.Name = "CardPictureBox";
+            this.CardPictureBox.Size = new System.Drawing.Size(73, 98);
+            this.CardPictureBox.TabIndex = 17;
+            this.CardPictureBox.TabStop = false;
+            // 
+            // DrawCardButton
+            // 
+            this.DrawCardButton.Location = new System.Drawing.Point(477, 172);
+            this.DrawCardButton.Name = "DrawCardButton";
+            this.DrawCardButton.Size = new System.Drawing.Size(75, 23);
+            this.DrawCardButton.TabIndex = 18;
+            this.DrawCardButton.Text = "Draw";
+            this.DrawCardButton.UseVisualStyleBackColor = true;
+            this.DrawCardButton.Click += new System.EventHandler(this.DrawCardButton_Click);
+            // 
+            // DrawCardStatus
+            // 
+            this.DrawCardStatus.AutoSize = true;
+            this.DrawCardStatus.Location = new System.Drawing.Point(479, 145);
+            this.DrawCardStatus.Name = "DrawCardStatus";
+            this.DrawCardStatus.Size = new System.Drawing.Size(0, 13);
+            this.DrawCardStatus.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 234);
+            this.ClientSize = new System.Drawing.Size(797, 234);
+            this.Controls.Add(this.DrawCardStatus);
+            this.Controls.Add(this.DrawCardButton);
+            this.Controls.Add(this.CardPictureBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.RollXTimesTextbox);
             this.Controls.Add(this.MultipleDieRollButton);
             this.Controls.Add(this.label4);
@@ -213,8 +259,10 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Random Chance Suite";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CoinPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CardPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +285,10 @@
         public System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button MultipleDieRollButton;
         private System.Windows.Forms.TextBox RollXTimesTextbox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox CardPictureBox;
+        private System.Windows.Forms.Button DrawCardButton;
+        private System.Windows.Forms.Label DrawCardStatus;
     }
 }
 
