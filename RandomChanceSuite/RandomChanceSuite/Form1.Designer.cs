@@ -1,4 +1,6 @@
-﻿namespace RandomChanceSuite
+﻿using System;
+
+namespace RandomChanceSuite
 {
     partial class Form1
     {
@@ -66,6 +68,7 @@
             this.button0 = new System.Windows.Forms.Button();
             this.DecimalButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CoinPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardPictureBox)).BeginInit();
@@ -440,11 +443,22 @@
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(316, 236);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(137, 23);
+            this.button10.TabIndex = 39;
+            this.button10.Text = "Yahtzee!";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 234);
+            this.ClientSize = new System.Drawing.Size(754, 271);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.DivButton);
             this.Controls.Add(this.EqualsButton);
@@ -485,11 +499,17 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Random Chance Suite";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CoinPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CardPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
 
@@ -533,6 +553,7 @@
         private System.Windows.Forms.Button button0;
         private System.Windows.Forms.Button DecimalButton;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button button10;
     }
 }
 

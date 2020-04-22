@@ -337,5 +337,11 @@ namespace RandomChanceSuite
             operand1 = 0;
             operand2 = 0;
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Yahtzee yahtzee = new Yahtzee();
+            yahtzee.Show();
+        }
     }
 }
