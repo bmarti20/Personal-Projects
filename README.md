@@ -1,2 +1,2 @@
 # Personal-Projects
-Little pieces of code I come up with
+Small ideas for programs that I come up with
