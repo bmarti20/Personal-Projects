@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Bingo"
         mc:Ignorable="d"
         Title="Bingo Card" Height="600" Width="500" FontFamily="Comic Sans MS" FontWeight="Bold">
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="BoardGrid" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

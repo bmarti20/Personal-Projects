@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace Bingo
     {
         private const int NUM_SQUARES = 25;
         private static Random rnd = new Random();
+        private List<string> tile_names = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,15 +31,38 @@ namespace Bingo
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
             ReadBingoTitles();
+            if (tile_names != null)
+            {
+                GenerateBoard();
+            }
         }
 
         private void TileButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            Button button  = (Button)sender;
+            button.Background = Brushes.Green;
+            button.IsEnabled = false;
+
+            // Check for Bingo
+            if (CheckRows())
+            {
+                MessageBox.Show("");
+            }
+
+            if (CheckCols())
+            {
+                MessageBox.Show("");
+            }
+
+            if (CheckDiag())
+            {
+                MessageBox.Show("");
+            }
         }
 
-        private bool ReadBingoTitles()
+        private void ReadBingoTitles()
         {
+            tile_names = null;
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Select a .txt file with bingo names",
@@ -48,39 +73,71 @@ namespace Bingo
             };
             if (ofd.ShowDialog() == true)   // == true......
             {
-                List<string> lines = File.ReadAllLines(ofd.FileName).ToList();
-                if (lines.Count() < NUM_SQUARES)
+                try
+                {
+                    tile_names = File.ReadAllLines(ofd.FileName).ToList();
+                } catch {
+                    MessageBox.Show("ERROR - failed to read in file.");
+                    tile_names = null;
+                    return;
+                }
+                
+                if (tile_names.Count() < NUM_SQUARES)
                 {
                     MessageBox.Show(ofd.FileName + " does not contain enough entries to make a bingo card.");
-                    return false;
+                    tile_names = null;
                 }
-
-                for (int row = 0; row < 5; row++)
-                {
-                    for (int col = 0; col < 5; col++)
-                    {
-                        // Remove random name from list and assign it to button
-                        int index = rnd.Next(lines.Count());
-                        string btn_name = lines[index];
-                        lines.RemoveAt(index);
-
-                        Button btn = new Button
-                        {
-                            Content = btn_name, 
-                            Margin = new Thickness(5, 5, 5, 5)
-                        };
-                        btn.Click += TileButton_Click;
-                        Grid.SetColumn(btn, col);
-                        Grid.SetRow(btn, row);
-                        MainGrid.Children.Add(btn);
-                    }
-                }
-            } else
+            } else { MessageBox.Show("No valid file selected."); }
+        }
+        
+        private void GenerateBoard()
+        {
+            for (int row = 0; row < 5; row++)
             {
-                MessageBox.Show("No valid file selected.");
-                return false;
+                for (int col = 0; col < 5; col++)
+                {
+                    // Remove random name from list and assign it to button
+                    int index = rnd.Next(tile_names.Count());
+                    string btn_name = tile_names[index];
+                    tile_names.RemoveAt(index);
+
+                    Button btn = new Button
+                    {
+                        Content = btn_name,
+                        Margin = new Thickness(5, 5, 5, 5)
+                    };
+                    btn.Click += TileButton_Click;
+                    Grid.SetColumn(btn, col);
+                    Grid.SetRow(btn, row);
+                    BoardGrid.Children.Add(btn);
+                }
             }
-            return true;
+        }
+
+        private bool CheckRows()
+        {
+            int offset = 1; // first element is the generate grid button. Fix this later, because it's stupid!
+            for (int row = 0; row < 5; row++)
+            {
+                bool bingo = true;
+                for (int col = 0; col < 5; col++)
+                {
+                    bingo &= !((Button)BoardGrid.Children[offset + row + col]).IsEnabled;
+                }
+                if (bingo) return true;
+            }
+            return false;
+        }
+
+        private bool CheckCols()
+        {
+
+            return false;
+        }
+
+        private bool CheckDiag()
+        {
+            return false;
         }
     }
 }
