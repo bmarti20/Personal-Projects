@@ -20,9 +20,12 @@ namespace Bingo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int NUM_SQUARES = 25;
+        private const int BOARD_WIDTH = 5;
+        private const int NUM_SQUARES = BOARD_WIDTH * BOARD_WIDTH;
+        
         private static Random rnd = new Random();
         private List<string> tile_names = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,27 +39,18 @@ namespace Bingo
                 GenerateBoard();
             }
         }
-
+         
         private void TileButton_Click(object sender, RoutedEventArgs e)
         {
             Button button  = (Button)sender;
+
             button.Background = Brushes.Green;
             button.IsEnabled = false;
 
             // Check for Bingo
-            if (CheckRows())
+            if (CheckForBingo())
             {
-                MessageBox.Show("");
-            }
-
-            if (CheckCols())
-            {
-                MessageBox.Show("");
-            }
-
-            if (CheckDiag())
-            {
-                MessageBox.Show("");
+                MessageBox.Show("Congratulations! That's a Bingo!");
             }
         }
 
@@ -92,9 +86,10 @@ namespace Bingo
         
         private void GenerateBoard()
         {
-            for (int row = 0; row < 5; row++)
+            BoardGrid.Children.Clear();
+            for (int row = 0; row < BOARD_WIDTH; row++)
             {
-                for (int col = 0; col < 5; col++)
+                for (int col = 0; col < BOARD_WIDTH; col++)
                 {
                     // Remove random name from list and assign it to button
                     int index = rnd.Next(tile_names.Count());
@@ -114,29 +109,29 @@ namespace Bingo
             }
         }
 
-        private bool CheckRows()
+        private bool CheckForBingo()
         {
-            int offset = 1; // first element is the generate grid button. Fix this later, because it's stupid!
-            for (int row = 0; row < 5; row++)
+            // Check Rows, Columns, and Diagonals
+            bool left_diag_bingo = true;
+            bool right_diag_bingo = true;
+            for (int row = 0; row < BOARD_WIDTH; row++)
             {
-                bool bingo = true;
-                for (int col = 0; col < 5; col++)
+                left_diag_bingo &= !((Button)BoardGrid.Children[(BOARD_WIDTH + 1) * row]).IsEnabled;
+                right_diag_bingo &= !((Button)BoardGrid.Children[(BOARD_WIDTH - 1) + (row * (BOARD_WIDTH - 1))]).IsEnabled;
+
+                bool row_bingo = true;
+                bool col_bingo = true;
+
+                for (int col = 0; col < BOARD_WIDTH; col++)
                 {
-                    bingo &= !((Button)BoardGrid.Children[offset + row + col]).IsEnabled;
+                    row_bingo &= !((Button)BoardGrid.Children[(row * BOARD_WIDTH) + col]).IsEnabled;
+                    col_bingo &= !((Button)BoardGrid.Children[row + (col * BOARD_WIDTH)]).IsEnabled;
                 }
-                if (bingo) return true;
+                if (row_bingo || col_bingo) return true;
             }
-            return false;
-        }
 
-        private bool CheckCols()
-        {
+            if (left_diag_bingo || right_diag_bingo) return true;
 
-            return false;
-        }
-
-        private bool CheckDiag()
-        {
             return false;
         }
     }
