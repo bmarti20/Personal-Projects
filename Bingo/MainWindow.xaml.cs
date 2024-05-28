@@ -48,7 +48,11 @@ namespace Bingo
             button.IsEnabled = false;
 
             // Check for Bingo
-            if (CheckForBingo())
+            bool bingo = false;
+            //if (OneLineChk.Checked)
+            
+            //if (CheckForBingo())
+            if (CheckForBlackout())
             {
                 MessageBox.Show("Congratulations! That's a Bingo!");
             }
@@ -133,6 +137,25 @@ namespace Bingo
             if (left_diag_bingo || right_diag_bingo) return true;
 
             return false;
+        }
+
+        private bool CheckForTwoLines()
+        {
+            return false;
+        }
+
+        private bool CheckForPlus()
+        {
+            return false;
+        }
+
+        private bool CheckForBlackout()
+        {
+            for (int tile = 0; tile < BoardGrid.Children.Count; tile++)
+            {
+                if (((Button)BoardGrid.Children[tile]).IsEnabled) return false;
+            }
+            return true;
         }
     }
 }

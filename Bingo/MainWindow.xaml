@@ -5,31 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bingo"
         mc:Ignorable="d"
-        Title="Bingo Card" Height="600" Width="500" FontFamily="Comic Sans MS" FontWeight="Bold">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Bingo Card" Height="600" Width="500" FontFamily="Calibri" FontWeight="Bold" FontSize="16">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Options">
+                <MenuItem Header="One Line">
+                    <CheckBox x:Name="OneLineChk">One Line</CheckBox>
+                </MenuItem>
+                <MenuItem Header="Two Lines">
+                    <MenuItem.Template>
+                        <ControlTemplate>
+                            <CheckBox x:Name="TwoLineChk">Two Lines</CheckBox>
+                        </ControlTemplate>
+                    </MenuItem.Template>
+                </MenuItem>
+                <MenuItem Header="Plus Sign">
+                    <MenuItem.Template>
+                        <ControlTemplate>
+                            <CheckBox x:Name="PlusChk">Plus Sign</CheckBox>
+                        </ControlTemplate>
+                    </MenuItem.Template>
+                </MenuItem>
+                <MenuItem Header="Blackout">
+                    <MenuItem.Template>
+                        <ControlTemplate>
+                            <CheckBox x:Name="BlackoutChk">Blackout</CheckBox>
+                        </ControlTemplate>
+                    </MenuItem.Template>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel></StackPanel>
 
-        <Grid  x:Name="BoardGrid" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-        </Grid>
 
-        <Button x:Name="GenerateButton" Content="Generate Card" Grid.Row="5" Grid.ColumnSpan="5" Margin="5" Click="GenerateButton_Click"/>
-    </Grid>
+            <Grid x:Name="BoardGrid" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <Button x:Name="GenerateButton" Content="Generate Card" Grid.Row="5" Grid.ColumnSpan="5" Margin="5" Click="GenerateButton_Click"/>
+        </Grid>
+    </DockPanel>
 </Window>
