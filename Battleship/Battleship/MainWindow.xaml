@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Battleship"
         SizeToContent="WidthAndHeight">
-    <Grid>
+    <Grid Margin="5">
         <StackPanel>
-            <Label Content="Enemy Board"/>
-            <Grid Name="EnemyBoard">
+            <Label Content="Enemy Board" Margin="5" HorizontalAlignment="Center" Background="Red" FontWeight="Bold" FontSize="20"/>
+            <Grid Name="EnemyGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -38,31 +38,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="A" Grid.Row="0" Grid.Column="0"/>
-                <Label Content="B" Grid.Row="1" Grid.Column="0"/>
-                <Label Content="C" Grid.Row="2" Grid.Column="0"/>
-                <Label Content="D" Grid.Row="3" Grid.Column="0"/>
-                <Label Content="E" Grid.Row="4" Grid.Column="0"/>
-                <Label Content="F" Grid.Row="5" Grid.Column="0"/>
-                <Label Content="G" Grid.Row="6" Grid.Column="0"/>
-                <Label Content="H" Grid.Row="7" Grid.Column="0"/>
-                <Label Content="I" Grid.Row="8" Grid.Column="0"/>
-                <Label Content="J" Grid.Row="9" Grid.Column="0"/>
-
-                <Label Content="1" Grid.Row="10" Grid.Column="1"/>
-                <Label Content="2" Grid.Row="10" Grid.Column="2"/>
-                <Label Content="3" Grid.Row="10" Grid.Column="3"/>
-                <Label Content="4" Grid.Row="10" Grid.Column="4"/>
-                <Label Content="5" Grid.Row="10" Grid.Column="5"/>
-                <Label Content="6" Grid.Row="10" Grid.Column="6"/>
-                <Label Content="7" Grid.Row="10" Grid.Column="7"/>
-                <Label Content="8" Grid.Row="10" Grid.Column="8"/>
-                <Label Content="9" Grid.Row="10" Grid.Column="9"/>
-                <Label Content="10" Grid.Row="10" Grid.Column="10"/>
             </Grid>
 
-            <Label Content="Player Board"/>
-            <Grid Name="PlayerBoard">
+            <Label Content="Player Board" Margin="5" HorizontalAlignment="Center" Background="Blue" FontWeight="Bold" FontSize="20"/>
+            <Grid Name="PlayerGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -90,28 +69,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <Label Content="A" Grid.Row="0" Grid.Column="0"/>
-                <Label Content="B" Grid.Row="1" Grid.Column="0"/>
-                <Label Content="C" Grid.Row="2" Grid.Column="0"/>
-                <Label Content="D" Grid.Row="3" Grid.Column="0"/>
-                <Label Content="E" Grid.Row="4" Grid.Column="0"/>
-                <Label Content="F" Grid.Row="5" Grid.Column="0"/>
-                <Label Content="G" Grid.Row="6" Grid.Column="0"/>
-                <Label Content="H" Grid.Row="7" Grid.Column="0"/>
-                <Label Content="I" Grid.Row="8" Grid.Column="0"/>
-                <Label Content="J" Grid.Row="9" Grid.Column="0"/>
-
-                <Label Content="1" Grid.Row="10" Grid.Column="1"/>
-                <Label Content="2" Grid.Row="10" Grid.Column="2"/>
-                <Label Content="3" Grid.Row="10" Grid.Column="3"/>
-                <Label Content="4" Grid.Row="10" Grid.Column="4"/>
-                <Label Content="5" Grid.Row="10" Grid.Column="5"/>
-                <Label Content="6" Grid.Row="10" Grid.Column="6"/>
-                <Label Content="7" Grid.Row="10" Grid.Column="7"/>
-                <Label Content="8" Grid.Row="10" Grid.Column="8"/>
-                <Label Content="9" Grid.Row="10" Grid.Column="9"/>
-                <Label Content="10" Grid.Row="10" Grid.Column="10"/>
             </Grid>
         </StackPanel>
     </Grid>
